@@ -119,6 +119,16 @@ class Sports(QWidget):
         self.stat5s=QSlider(Qt.Horizontal)
         self.stats.addWidget(self.stat5s)
 
+        self.stat6=QLabel('Opponent Points Per Game')
+        self.stats.addWidget(self.stat6)
+        self.stat6s=QSlider(Qt.Horizontal)
+        self.stats.addWidget(self.stat6s)
+
+        self.stat7=QLabel('Opponent Yards Per Game')
+        self.stats.addWidget(self.stat7)
+        self.stat7s=QSlider(Qt.Horizontal)
+        self.stats.addWidget(self.stat7s)
+
         self.generate=QPushButton('Generate')
         self.generate.clicked.connect(self.generate_statistics)
         self.predictions.addWidget(self.generate)
@@ -146,6 +156,20 @@ class Sports(QWidget):
         weights=[]
         weights.append(self.stat1s.value()/100)
         if self.passing.isChecked():
+            weights.append(self.stat2s.value()/100)
+            weights.append(0)
+        elif self.rushing.isChecked():
+            weights.append(0)
+            weights.append(self.stat2s.value()/100)
+        else:
+            weights.append(self.stat2s.value()/100)
+            weights.append(self.stat2s.value()/100)
+        weights.append(self.stat3s.value()/100)
+        weights.append(self.stat4s.value()/100)
+        weights.append(self.stat5s.value()/100)
+        weights.append(self.stat6s.value()/100)
+        weights.append(self.stat7s.value()/100)
+        print(weights)
 
 
 
