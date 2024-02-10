@@ -82,10 +82,6 @@ class Sports(QWidget):
         self.t2.addWidget(self.year2)
         self.stats.addLayout(self.t2)
 
-        self.set_teams=QPushButton('Select Teams')
-        self.set_teams.clicked.connect(self.team_select)
-        self.stats.addWidget(self.set_teams)
-
         self.stat1=QLabel('Points Per Game')
         self.stats.addWidget(self.stat1)
         self.stat1s=QSlider(Qt.Horizontal)
@@ -133,6 +129,8 @@ class Sports(QWidget):
         self.generate.clicked.connect(self.generate_statistics)
         self.predictions.addWidget(self.generate)
 
+        self.matchup=QLabel('Matchup')
+        self.predictions.addWidget(self.matchup)
         self.winner=QLabel(f'Predicted winner: {"sammy"}')
         self.predictions.addWidget(self.winner)
         self.probability=QLabel(f'{"insert math here"}')
@@ -143,16 +141,15 @@ class Sports(QWidget):
         self.overall.addLayout(self.predictions)
         self.setLayout(self.overall)
 
-
-    def team_select(self):
-        team1=str(self.team1.currentText())
-        team2=str(self.team2.currentText())
-        code1=team_dict[team1]
-        code2=team_dict[team2]
-        print(code1+code2)
-
     def generate_statistics(self):
         #order: ppg, pass yds, rush yds, turnover, win %, fg success rate, opp ppg, opp ypg
+        team1=str(self.team1.currentText())
+        team2=str(self.team2.currentText())
+        year1=str(self.year1.currentText())
+        year2=str(self.year2.currentText())
+        code1=team_dict[team1]
+        code2=team_dict[team2]
+        self.matchup.setText(f'{year1} {team1} vs. {year2} {team2}')
         weights=[]
         weights.append(self.stat1s.value()/100)
         if self.passing.isChecked():
