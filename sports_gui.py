@@ -14,6 +14,8 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import *
 
 
+
+
 team_dict={
 'Washington Commanders':'WAS',
 'New York Jets': 'NYJ',
@@ -58,15 +60,31 @@ class Sports(QWidget):
         self.stats=QVBoxLayout()
         self.predictions=QVBoxLayout()
 
+        self.t1=QHBoxLayout()
         self.team1=QComboBox()
         for item in team_dict.keys():
             self.team1.addItem(item)
-        self.stats.addWidget(self.team1)
+        self.t1.addWidget(self.team1)
+        self.year1=QComboBox()
+        for year in range(1999, 2024):
+            self.year1.addItem(str(year))
+        self.t1.addWidget(self.year1)
+        self.stats.addLayout(self.t1)
 
+        self.t2=QHBoxLayout()
         self.team2=QComboBox()
         for item in team_dict.keys():
             self.team2.addItem(item)
-        self.stats.addWidget(self.team2)
+        self.t2.addWidget(self.team2)
+        self.year2=QComboBox()
+        for year in range(1999, 2024):
+            self.year2.addItem(str(year))
+        self.t2.addWidget(self.year2)
+        self.stats.addLayout(self.t2)
+
+        self.set_teams=QPushButton('Select Teams')
+        self.set_teams.clicked.connect(self.team_select)
+        self.stats.addWidget(self.set_teams)
 
         self.stat1=QLabel('Points Per Game')
         self.stats.addWidget(self.stat1)
@@ -86,7 +104,24 @@ class Sports(QWidget):
         self.stat2s=QSlider(Qt.Horizontal)
         self.stats.addWidget(self.stat2s)
 
-        Self.
+        self.stat3=QLabel('Turnover Margin')
+        self.stats.addWidget(self.stat3)
+        self.stat3s=QSlider(Qt.Horizontal)
+        self.stats.addWidget(self.stat3s)
+
+        self.stat4=QLabel('Overall Win Percent')
+        self.stats.addWidget(self.stat4)
+        self.stat4s=QSlider(Qt.Horizontal)
+        self.stats.addWidget(self.stat4s)
+
+        self.stat5=QLabel('Field Goal Success Rate')
+        self.stats.addWidget(self.stat5)
+        self.stat5s=QSlider(Qt.Horizontal)
+        self.stats.addWidget(self.stat5s)
+
+        self.generate=QPushButton('Generate')
+        self.generate.clicked.connect(self.generate_statistics)
+        self.predictions.addWidget(self.generate)
 
         self.winner=QLabel(f'Predicted winner: {"sammy"}')
         self.predictions.addWidget(self.winner)
@@ -100,7 +135,17 @@ class Sports(QWidget):
 
 
     def team_select(self):
-        pass
+        team1=str(self.team1.currentText())
+        team2=str(self.team2.currentText())
+        code1=team_dict[team1]
+        code2=team_dict[team2]
+        print(code1+code2)
+
+    def generate_statistics(self):
+        #order: ppg, pass yds, rush yds, turnover, win %, fg success rate, opp ppg, opp ypg
+        weights=[]
+        weights.append(self.stat1s.value()/100)
+        if self.passing.isChecked():
 
 
 
