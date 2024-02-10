@@ -11,8 +11,6 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import *
 
-import datetime
-
 class Sports(QWidget):
     def __init__(self):
         super().__init__()
