@@ -67,7 +67,7 @@ class Sports(QWidget):
             self.team1.addItem(item)
         self.t1.addWidget(self.team1)
         self.year1=QComboBox()
-        for year in range(1999, 2024):
+        for year in range(2000, 2024):
             self.year1.addItem(str(year))
         self.t1.addWidget(self.year1)
         self.stats.addLayout(self.t1)
@@ -78,7 +78,7 @@ class Sports(QWidget):
             self.team2.addItem(item)
         self.t2.addWidget(self.team2)
         self.year2=QComboBox()
-        for year in range(1999, 2024):
+        for year in range(2000, 2024):
             self.year2.addItem(str(year))
         self.t2.addWidget(self.year2)
         self.stats.addLayout(self.t2)
@@ -146,8 +146,8 @@ class Sports(QWidget):
         #order: ppg, pass yds, rush yds, turnover, win %, fg success rate, opp ppg, opp ypg
         team1=str(self.team1.currentText())
         team2=str(self.team2.currentText())
-        year1=str(self.year1.currentText())
-        year2=str(self.year2.currentText())
+        year1=int(self.year1.currentText())
+        year2=int(self.year2.currentText())
         code1=team_dict[team1]
         code2=team_dict[team2]
         self.matchup.setText(f'{year1} {team1} vs. {year2} {team2}')
@@ -167,13 +167,13 @@ class Sports(QWidget):
         weights.append(self.stat5s.value()/100)
         weights.append(self.stat6s.value()/100)
         weights.append(self.stat7s.value()/100)
-        self.t1winprob=make_prediction((code1, self.year1),(code2,self.year2),weights)
-        if self.t1winprob>=.5:
-            self.winner.setText(f'Predicted winner: {self.year1} {self.team1}')
-            self.probability.setText(f'Win probability: {self.t1winprob*100}%')
+        t1winprob=make_prediction((code1, year1),(code2,year2),weights)
+        if t1winprob>=.5:
+            self.winner.setText(f'Predicted winner: {year1} {team1}')
+            self.probability.setText(f'Win probability: {t1winprob*100}%')
         else:
-            self.winner.setText(f'Predicted winner: {self.year2} {self.team2}')
-            self.probability.setText(f'Win probability: {(1-self.t1winprob)*100}%')
+            self.winner.setText(f'Predicted winner: {year2} {team2}')
+            self.probability.setText(f'Win probability: {(1-t1winprob)*100}%')
 
 
 
