@@ -13,7 +13,10 @@ def sigmoid(x):
    return 1 / (1 + math.exp(-x))
 
 def make_prediction(team1 : tuple[str, int], team2 : tuple[str, int], weights : list[int]):
-   weights = [x / sum(weights) for x in weights]
+   try:
+      weights = [x / sum(weights) for x in weights]
+   except:
+      return 0.5
 
    team1_stats = data[(data['team'] == team1[0]) & (data['year'] == team1[1])][stats]
    team2_stats = data[(data['team'] == team2[0]) & (data['year'] == team2[1])][stats]
