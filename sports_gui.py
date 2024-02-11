@@ -65,10 +65,12 @@ class Sports(QWidget):
         self.team1=QComboBox()
         for item in sorted(list(team_dict.keys())):
             self.team1.addItem(item)
+        self.team1.setCurrentIndex(15)
         self.t1.addWidget(self.team1)
         self.year1=QComboBox()
         for year in range(2000, 2024):
             self.year1.addItem(str(year))
+        self.year1.setCurrentIndex(23)
         self.t1.addWidget(self.year1)
         self.stats.addLayout(self.t1)
 
@@ -76,10 +78,12 @@ class Sports(QWidget):
         self.team2=QComboBox()
         for item in sorted(list(team_dict.keys())):
             self.team2.addItem(item)
+        self.team2.setCurrentIndex(27)
         self.t2.addWidget(self.team2)
         self.year2=QComboBox()
         for year in range(2000, 2024):
             self.year2.addItem(str(year))
+        self.year2.setCurrentIndex(23)
         self.t2.addWidget(self.year2)
         self.stats.addLayout(self.t2)
 
