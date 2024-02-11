@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import (
     QRadioButton
 )
 from PyQt5.QtCore import *
-from make_prediction import make_prediction
+from make_prediction import make_prediction, evaluate_predictions
 
 
 
@@ -147,7 +147,8 @@ class Sports(QWidget):
         self.predictions.addWidget(self.winner)
         self.probability=QLabel('Win probability:')
         self.predictions.addWidget(self.probability)
-
+        self.past=QLabel('Accuracy:')
+        self.predictions.addWidget(self.past)
 
         self.overall.addLayout(self.stats)
         self.overall.addLayout(self.predictions)
@@ -179,6 +180,8 @@ class Sports(QWidget):
         weights.append(self.stat6s.value()/100)
         weights.append(self.stat7s.value()/100)
         t1winprob=make_prediction((code1, year1),(code2,year2),weights)
+        past_accuracy = evaluate_predictions(weights)
+        self.past.setText(f"Past accuracy: {past_accuracy*100}%")
         if t1winprob>=.5:
             self.winner.setText(f'Predicted winner: {year1} {team1}')
             self.probability.setText(f'Win probability: {t1winprob*100}%')
