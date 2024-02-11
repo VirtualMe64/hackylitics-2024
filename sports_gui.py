@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import (
     QRadioButton
 )
 from PyQt5.QtCore import *
+from PyQt5.QtGui import QFont
 from make_prediction import make_prediction, evaluate_predictions
 
 
@@ -55,6 +56,10 @@ team_dict={
 class Sports(QWidget):
     def __init__(self):
         super().__init__()
+
+        custom_font=QFont()
+        custom_font.setPointSize(15)
+        QApplication.setFont(custom_font)
 
         self.setWindowTitle('Who Will Win the Super Bowl?')
         self.overall=QHBoxLayout()
