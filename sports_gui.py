@@ -63,7 +63,7 @@ class Sports(QWidget):
 
         self.t1=QHBoxLayout()
         self.team1=QComboBox()
-        for item in team_dict.keys():
+        for item in sorted(list(team_dict.keys())):
             self.team1.addItem(item)
         self.t1.addWidget(self.team1)
         self.year1=QComboBox()
@@ -74,7 +74,7 @@ class Sports(QWidget):
 
         self.t2=QHBoxLayout()
         self.team2=QComboBox()
-        for item in team_dict.keys():
+        for item in sorted(list(team_dict.keys())):
             self.team2.addItem(item)
         self.t2.addWidget(self.team2)
         self.year2=QComboBox()
@@ -86,6 +86,7 @@ class Sports(QWidget):
         self.stat1=QLabel('Points Per Game')
         self.stats.addWidget(self.stat1)
         self.stat1s=QSlider(Qt.Horizontal)
+        self.stat1s.setSliderPosition(50)
         self.stats.addWidget(self.stat1s)
 
         self.stat2=QLabel('Yards Per Game')
@@ -99,38 +100,44 @@ class Sports(QWidget):
         self.yard_proportion.addWidget(self.both)
         self.stats.addLayout(self.yard_proportion)
         self.stat2s=QSlider(Qt.Horizontal)
+        self.stat2s.setSliderPosition(50)
         self.stats.addWidget(self.stat2s)
 
         self.stat3=QLabel('Turnover Margin')
         self.stats.addWidget(self.stat3)
         self.stat3s=QSlider(Qt.Horizontal)
+        self.stat3s.setSliderPosition(50)
         self.stats.addWidget(self.stat3s)
 
         self.stat4=QLabel('Overall Win Percent')
         self.stats.addWidget(self.stat4)
         self.stat4s=QSlider(Qt.Horizontal)
+        self.stat4s.setSliderPosition(50)
         self.stats.addWidget(self.stat4s)
 
         self.stat5=QLabel('Field Goal Success Rate')
         self.stats.addWidget(self.stat5)
         self.stat5s=QSlider(Qt.Horizontal)
+        self.stat5s.setSliderPosition(50)
         self.stats.addWidget(self.stat5s)
 
         self.stat6=QLabel('Opponent Points Per Game')
         self.stats.addWidget(self.stat6)
         self.stat6s=QSlider(Qt.Horizontal)
+        self.stat6s.setSliderPosition(50)
         self.stats.addWidget(self.stat6s)
 
         self.stat7=QLabel('Opponent Yards Per Game')
         self.stats.addWidget(self.stat7)
         self.stat7s=QSlider(Qt.Horizontal)
+        self.stat7s.setSliderPosition(50)
         self.stats.addWidget(self.stat7s)
 
         self.generate=QPushButton('Generate')
         self.generate.clicked.connect(self.generate_statistics)
         self.predictions.addWidget(self.generate)
 
-        self.matchup=QLabel('Matchup')
+        self.matchup=QLabel('Matchup:')
         self.predictions.addWidget(self.matchup)
         self.winner=QLabel('Predicted winner:')
         self.predictions.addWidget(self.winner)
