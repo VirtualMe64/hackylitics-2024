@@ -167,7 +167,7 @@ class Sports(QWidget):
         weights.append(self.stat5s.value()/100)
         weights.append(self.stat6s.value()/100)
         weights.append(self.stat7s.value()/100)
-        self.t1winprob=make_prediction((self.code1, self.year1),(self.code2,self.year2),weights)
+        self.t1winprob=make_prediction((code1, self.year1),(code2,self.year2),weights)
         if self.t1winprob>=.5:
             self.winner.setText(f'Predicted winner: {self.year1} {self.team1}')
             self.probability.setText(f'Win probability: {self.t1winprob*100}%')
