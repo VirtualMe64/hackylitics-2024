@@ -194,11 +194,6 @@ class Sports(QWidget):
             self.winner.setText(f'Predicted winner: {year2} {team2}')
             self.probability.setText(f'Win probability: {(1-t1winprob)*100}%')
 
-
-
-
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     main = Sports()

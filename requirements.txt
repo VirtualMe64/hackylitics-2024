@@ -1,0 +1,3 @@
+sportsipy
+pandas
+PyQt5

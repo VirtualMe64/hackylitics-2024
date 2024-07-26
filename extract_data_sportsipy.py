@@ -8,6 +8,7 @@ def extract_year_stats(year):
     data_frame : pd.DataFrame = teams.dataframes
     data_frame.to_csv(f"Data/{year}.csv")
 
-# starting year: 1970
-# ending year: 2022
-extract_year_stats(2023)
+if __name__ == "__main__":
+    # starting year: 1970
+    # ending year: 2022
+    extract_year_stats(2023)
